@@ -8,3 +8,8 @@ A system for CSH to manage, track, and document house projects. In addition, the
 * Profile of skills and projects.
 * Search for members with specific skills, or projects that need a certain skill.
 * Lists or tags such as 'eboard picks' or 'freshmen projects'
+
+## Breakdown
+* Users
+* Projects
+* Skills
