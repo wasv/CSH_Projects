@@ -3,4 +3,4 @@ __author__ = 'William'
 
 
 class CustomHeaderMiddleware(RemoteUserMiddleware):
-    header = 'WEBAUTH_USER'
+    header = 'HTTP_WEBAUTH_USER'
