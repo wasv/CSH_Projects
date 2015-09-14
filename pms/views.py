@@ -2,7 +2,9 @@ from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 # Create your views here.
 def loginTest(request):
-    return HttpResponse(request.user.username)
+    if request.user.is_authenticated():
+        return HttpResponse(request.user.username)
+    else:
+        return HttpResponse("Not logged in")
