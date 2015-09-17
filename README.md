@@ -10,25 +10,34 @@ A system for CSH to manage, track, and document house projects. In addition, the
 * Lists or tags such as 'eboard picks' or 'freshmen projects'
 
 ## Navigation Breakdown
-* Index - List of all active projects and concepts
-* Project details - Link to external sites, and author profile.
-  * 
+* Index - List of all active projects and concepts.
+* Limbo - List of inactive projects.
+* Project Details - Comments, links to external sites, and list of owner and collaborator profile.
+* Profile - List of users projects, bio, resume, and links
 
 ## Model Breakdown
 * Projects
   * Title (v1)
   * Description (v1)
-  * Author (v1)
+  * Last Update (v1)
+  * Owner (v1)
+  * Collaborators (v2)
   * Picture (v1.5)
   * Links (v1.5)
-  * State (Concept/Active/Inactive/Done) (v1.5)
+  * State (Concept/Active/Inactive/Done) (v2)
+    * Project is a 'Concept' until there is a physical object or compilable code.
+    * Project is 'Active' if owner/collaborator 'Checks in' every 2 months.
+    * Considered 'inactive' if no check in after 1 year or explicitly abandoned.
+      * Allow new owner to 'revive' project? (or maybe 'fork' it instead?)
+    * Project can be marked as 'Done' when there is no need for further updates.
   * Suggestions/Comments (v2)
   * Build Updates (v2)
 * Profiles
   * Name (v1)
   * Bio (v1)
+  * List of projects (v1)
   * Picture (v1.5)
-  * Links to media (v1.5)
+  * Links to social networks (v1.5)
   * Resume (v2)
 * Skills (v3?)
 
