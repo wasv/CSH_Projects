@@ -6,7 +6,7 @@ from .forms import ProfileForm, UserForm
 # Create your views here.
 def loginTest(request):
     if request.user.is_authenticated():
-        return HttpResponse(request.user.username)
+        return HttpResponse(str(request.user))
     else:
         return HttpResponse("Not logged in")
 
