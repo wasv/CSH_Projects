@@ -13,7 +13,7 @@ class Profile(models.Model):
         if self.user.name:
             return self.user.name + " (" + self.user.username + ")"
         else:
-            return "<"+self.user.username+">"
+            return self.user.username
 
 class Project(models.Model):
     STATE_CHOICES = (
@@ -37,4 +37,4 @@ class Project(models.Model):
         return self.last_update >= timezone.now() - datetime.timedelta(days=14)
 
     def __str__(self):
-        return self.title + " (by " + self.owner.username + ")"
+        return self.title + " (by " + self.owner.user.username + ")"
