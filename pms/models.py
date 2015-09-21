@@ -21,8 +21,8 @@ class Project(models.Model):
     last_update = models.DateField(timezone.now())
     state = models.CharField(max_length=1, choices=STATE_CHOICES)
 
-    owner = models.ForeignKey(Profile)
-    contributors = models.ManyToManyField(Profile)
+    owner = models.ForeignKey(Profile, related_name="%(app_label)s_%(class)s_owner")
+    contributors = models.ManyToManyField(Profile, related_name="%(app_label)s_%(class)s_contributors")
 
     website = models.URLField()
     documentation = models.URLField()
