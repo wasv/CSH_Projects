@@ -14,15 +14,17 @@ def loginTest(request):
 @login_required(login_url='loginTest')
 def setupProfile(request):
 
-    registered= False
+    registered = False
     if registered:
         if request.method == 'POST':
-            user_form = UserForm(data=request.POST)
-            profile_form = ProfileForm(data=request.POST)
+            user_form = UserForm(data=request.POST, instance=request.user)
+            if hasattr(request.user, 'profile'):
+                profile_form = ProfileForm(data=request.POST, instance=request.user.profile)
+            else:
+                profile_form = ProfileForm(data=request.POST)
 
             if user_form.is_valid() and profile_form.is_valid():
                 user = user_form.save()
-                user.username=request.user.username
                 user.save()
 
                 profile = profile_form.save(commit=False)
@@ -33,6 +35,6 @@ def setupProfile(request):
             else:
                 print(user_form.errors, profile_form.errors)
     else:
-        user_form = UserForm()
+        user_form = UserForm(instance=request.user)
         profile_form = ProfileForm()
-    return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form})
+    return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
