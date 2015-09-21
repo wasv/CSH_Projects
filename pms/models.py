@@ -11,7 +11,7 @@ class Profile(models.Model):
 
     def __str__(self):
         if hasattr(self.user, 'name'):
-            return self.user.name + " (" + self.user.username + ")"
+            return self.user.first_name + self.user.last_name + " (" + self.user.username + ")"
         else:
             return self.user.username
 
