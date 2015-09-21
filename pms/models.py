@@ -10,10 +10,11 @@ class Profile(models.Model):
     website = models.URLField()
 
     def __str__(self):
-        if self.user.name:
+        if hasattr(self.user, 'name'):
             return self.user.name + " (" + self.user.username + ")"
         else:
             return self.user.username
+
 
 class Project(models.Model):
     STATE_CHOICES = (
@@ -24,7 +25,7 @@ class Project(models.Model):
     )
     title = models.CharField(max_length=140)
     description = models.TextField()
-    last_update = models.DateField(timezone.now())
+    last_update = models.DateField(default=timezone.now())
     state = models.CharField(max_length=1, choices=STATE_CHOICES)
 
     owner = models.ForeignKey(Profile, related_name="%(app_label)s_%(class)s_owner")
