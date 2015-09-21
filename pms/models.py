@@ -9,6 +9,9 @@ class Profile(models.Model):
     bio = models.TextField()
     website = models.URLField()
 
+    def __str__(self):
+        return self.user.name + "(" + self.user.username + ")"
+
 class Project(models.Model):
     STATE_CHOICES = (
         ('C','Concept'),
@@ -29,3 +32,6 @@ class Project(models.Model):
 
     def is_active(self):
         return self.last_update >= timezone.now() - datetime.timedelta(days=14)
+
+    def __str__(self):
+        return self.title + "(by " + self.user.name + ")"
