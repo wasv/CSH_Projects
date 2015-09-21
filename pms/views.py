@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, UserForm
 
@@ -6,7 +6,10 @@ from .forms import ProfileForm, UserForm
 # Create your views here.
 def loginTest(request):
     if request.user.is_authenticated():
-        return HttpResponse(str(request.user))
+        if hasattr(request.user, 'profile'):
+            return HttpResponse(str(request.user.profile))
+        else:
+            return redirect("setupProfile")
     else:
         return HttpResponse("Not logged in")
 
