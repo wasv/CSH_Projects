@@ -35,5 +35,8 @@ def setupProfile(request):
             print(user_form.errors, profile_form.errors)
     else:
         user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm()
+        if hasattr(request.user, 'profile'):
+            profile_form = ProfileForm(instance=request.user.profile)
+        else:
+            profile_form = ProfileForm()
     return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
