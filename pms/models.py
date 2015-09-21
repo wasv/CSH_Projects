@@ -3,7 +3,12 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 
-# Create your models here.
+
+class Profiles(models.Model):
+    user = models.OneToOneField(get_user_model())
+    bio = models.TextField()
+    website = models.URLField()
+
 class Project(models.Model):
     STATE_CHOICES = (
         ('C','Concept'),
@@ -24,8 +29,3 @@ class Project(models.Model):
 
     def is_active(self):
         return self.last_update >= timezone.now() - datetime.timedelta(days=14)
-
-class Profiles(models.Model):
-    user = models.OneToOneField(get_user_model())
-    bio = models.TextField()
-    website = models.URLField()
