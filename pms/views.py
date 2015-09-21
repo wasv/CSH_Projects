@@ -31,7 +31,7 @@ def setupProfile(request):
                 registered = True
             else:
                 print(user_form.errors, profile_form.errors)
-        else:
-            user_form = UserForm()
-            profile_form = ProfileForm()
+    else:
+        user_form = UserForm()
+        profile_form = ProfileForm()
     return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form})
