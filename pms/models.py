@@ -1,11 +1,11 @@
 import datetime
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth import get_user_model
+from django.conf import settings
 
 
-class Profiles(models.Model):
-    user = models.OneToOneField(get_user_model())
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     bio = models.TextField()
     website = models.URLField()
 
