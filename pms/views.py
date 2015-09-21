@@ -15,25 +15,24 @@ def loginTest(request):
 def setupProfile(request):
 
     registered = False
-    if registered:
-        if request.method == 'POST':
-            user_form = UserForm(data=request.POST, instance=request.user)
-            if hasattr(request.user, 'profile'):
-                profile_form = ProfileForm(data=request.POST, instance=request.user.profile)
-            else:
-                profile_form = ProfileForm(data=request.POST)
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST, instance=request.user)
+        if hasattr(request.user, 'profile'):
+            profile_form = ProfileForm(data=request.POST, instance=request.user.profile)
+        else:
+            profile_form = ProfileForm(data=request.POST)
 
-            if user_form.is_valid() and profile_form.is_valid():
-                user = user_form.save()
-                user.save()
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.save()
 
-                profile = profile_form.save(commit=False)
-                profile.user = user
+            profile = profile_form.save(commit=False)
+            profile.user = user
 
-                profile.save()
-                registered = True
-            else:
-                print(user_form.errors, profile_form.errors)
+            profile.save()
+            registered = True
+        else:
+            print(user_form.errors, profile_form.errors)
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm()
