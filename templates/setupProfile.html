@@ -9,7 +9,7 @@
 
     {% if registered %}
     <strong>Thank you for registering.</strong>
-    <a href="/rango/">Return to the homepage.</a><br />
+    <a href="{% url 'index' %}">Return to the homepage.</a><br />
     {% else %}
     <strong>Please create your profile.</strong><br />
 

@@ -43,3 +43,9 @@ def setupProfile(request):
         else:
             profile_form = ProfileForm()
     return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
+
+
+
+@login_required(login_url="loginTest")
+def index(request):
+    return HttpResponse("index")
