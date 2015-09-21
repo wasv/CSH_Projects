@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PMS Registration</title>
+</head>
+<body>
+    <h1>PMS Registration</h1>
+
+    {% if registered %}
+    <strong>Thank you for registering.</strong>
+    <a href="/rango/">Return to the homepage.</a><br />
+    {% else %}
+    <strong>Please create your profile.</strong><br />
+
+    <form id="user_form" method="post" action="{%  url 'setupProfile' %}"
+            enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+
+        <input type="submit" name="submit" value="Register" />
+    </form>
+    {% endif %}
+
+</body>
+</html>
