@@ -51,6 +51,7 @@ def newProject(request):
         project_form = ProjectForm(data=request.POST)
         project = project_form.save(commit=False)
         project.owner = request.user.profile
+        project.save()
 
     else:
         project_form = ProjectForm()
