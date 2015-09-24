@@ -1,22 +1,22 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, UserForm
+from django.contrib.auth.decorators import user_passes_test
+from .forms import *
 
 
-# Create your views here.
+# Checks if user has a profiles
+def profile_check(user):
+    return user.is_authenticated() and hasattr(user, 'profile')
+
+
 def loginTest(request):
     if request.user.is_authenticated():
-        if hasattr(request.user, 'profile'):
-            return HttpResponse(str(request.user.profile))
-        else:
-            return redirect("setupProfile")
+        return HttpResponse("You are logged in as:",str(request.user.username))
     else:
         return HttpResponse("Not logged in")
 
 
-@login_required(login_url='loginTest')
+@user_passes_test(profile_check, login_url='loginTest')
 def setupProfile(request):
-
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST, instance=request.user)
@@ -45,7 +45,18 @@ def setupProfile(request):
     return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
 
 
+@user_passes_test(profile_check, login_url='loginTest')
+def newProject(request):
+    if request.method == 'POST':
+        project_form = ProjectForm(data=request.POST)
+        project = project_form.save(commit=False)
+        project.owner = request.user.profile
 
-@login_required(login_url="loginTest")
+    else:
+        project_form = ProjectForm()
+    return render(request,'newProject.html',{'project_form':project_form})
+
+
+@user_passes_test(profile_check, login_url='loginTest')
 def index(request):
     return HttpResponse("index")

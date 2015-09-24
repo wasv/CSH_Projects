@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PMS - Add a Project</title>
+</head>
+<body>
+    <h1>Add a Project</h1>
+
+    <strong>Please create your project.</strong><br />
+
+    <form id="project_form" method="post" action="{%  url 'newProject' %}"
+            enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ project_form.as_p }}
+
+        <input type="submit" name="submit" value="Register" />
+    </form>
+
+</body>
+</html>

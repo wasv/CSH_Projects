@@ -13,3 +13,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name','last_name','email']
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['title','description','state','website','documentation']
