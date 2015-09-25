@@ -7,7 +7,7 @@ from django.conf import settings
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     bio = models.TextField()
-    website = models.URLField()
+    website = models.URLField(blank=True)
 
     def __str__(self):
         if hasattr(self.user, 'name'):
@@ -28,11 +28,11 @@ class Project(models.Model):
     last_update = models.DateField(default=timezone.now)
     state = models.CharField(max_length=1, choices=STATE_CHOICES)
 
-    owner = models.ForeignKey(Profile, related_name="%(app_label)s_%(class)s_owner")
-    contributors = models.ManyToManyField(Profile, related_name="%(app_label)s_%(class)s_contributors")
+    owner = models.ForeignKey(Profile, related_name="%(app_label)s_%(class)s_owner", blank=True)
+    contributors = models.ManyToManyField(Profile, related_name="%(app_label)s_%(class)s_contributors", blank=True)
 
-    website = models.URLField()
-    documentation = models.URLField()
+    website = models.URLField(blank=True)
+    documentation = models.URLField(blank=True)
 
     def is_active(self):
         return self.last_update >= timezone.now() - datetime.timedelta(days=14)
