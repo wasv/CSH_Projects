@@ -17,7 +17,7 @@
 
     {% for project in project_list %}
         <div class="project">
-            <h2>{{ project.title }} by {{ project.owner }}</h2>
+            <h2><a title="{{ project.title }}" href="/project/{{ project.id }}/">{{ project.title }}</a> by {{ project.owner }}</h2>
             <p>{{ project.description }}</p>
             <span>{{ project.last_update }}</span>
         </div>
