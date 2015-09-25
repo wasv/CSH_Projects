@@ -14,10 +14,13 @@
     {% else %}
     <h1>CSH PMS</h1>
     {% endif %}
-    <ul>
+
     {% for project in project_list %}
-        <li>{{ project.title }}</li>
+        <div class="project">
+            <h2>{{ project.title }} by {{ project.owner }}</h2>
+            <p>{{ project.description }}</p>
+            <span>{{ project.last_update }}</span>
+        </div>
     {% endfor %}
-    </ul>
 </body>
 </html>
