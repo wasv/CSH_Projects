@@ -60,4 +60,5 @@ def newProject(request):
 
 @user_passes_test(profile_check, login_url='loginTest')
 def index(request):
-    return HttpResponse("index")
+    project_list = Project.objects.all();
+    return render(request,'listProjects.html',{'project_list':project_list})

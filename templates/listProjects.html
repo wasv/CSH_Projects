@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }} | CSH PMS</title>
+    {% else %}
+    <title>CSH PMS</title>
+    {% endif %}
+</head>
+<body>
+{% if title %}
+    <h1>{{ title }}</h1>
+    {% else %}
+    <h1>CSH PMS</h1>
+    {% endif %}
+    <ul>
+    {% for project in project_list %}
+        <li>{{ project.title }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
