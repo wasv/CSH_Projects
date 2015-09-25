@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import *
 
 
@@ -15,8 +15,8 @@ def loginTest(request):
         return HttpResponse("Not logged in")
 
 
-@user_passes_test(profile_check, login_url='loginTest')
-def setupProfile(request):
+@login_required(login_url='loginTest')
+def profileCreate(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST, instance=request.user)
@@ -42,11 +42,11 @@ def setupProfile(request):
             profile_form = ProfileForm(instance=request.user.profile)
         else:
             profile_form = ProfileForm()
-    return render(request,'setupProfile.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
+    return render(request,'profileCreate.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
 
 
-@user_passes_test(profile_check, login_url='loginTest')
-def newProject(request):
+@user_passes_test(profile_check, login_url='profileCreate')
+def projectCreate(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST)
         project = project_form.save(commit=False)
@@ -55,10 +55,16 @@ def newProject(request):
 
     else:
         project_form = ProjectForm()
-    return render(request,'newProject.html',{'project_form':project_form})
+    return render(request,'projectCreate.html',{'project_form':project_form})
 
 
-@user_passes_test(profile_check, login_url='loginTest')
+@user_passes_test(profile_check, login_url='profileCreate')
+def projectDetail(request, project_id):
+  project = get_object_or_404(Project, pk=project_id)
+  return render(request,'projectDetail.html',{'project':project})
+
+
+@user_passes_test(profile_check, login_url='profileCreate')
 def index(request):
     project_list = Project.objects.order_by('-last_update')[:10];
-    return render(request,'listProjects.html',{'project_list':project_list})
+    return render(request,'projectList.html',{'project_list':project_list})
