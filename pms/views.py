@@ -60,5 +60,5 @@ def newProject(request):
 
 @user_passes_test(profile_check, login_url='loginTest')
 def index(request):
-    project_list = Project.objects.all();
+    project_list = Project.objects.order_by('-last_update')[:10];
     return render(request,'listProjects.html',{'project_list':project_list})
