@@ -12,6 +12,8 @@
 {% block content %}
     <h2> by <a href="{% url 'profileView' project.owner %}">{{ project.owner }}</a></h2>
 
+    <img src="http://placehold.it/900x150/fff/000.png?text=Picture+of+{{ project.title }}"/>
+
     <p>{{ project.description }}</p>
     <span>{{ project.last_update }}</span>
 {% endblock %}
