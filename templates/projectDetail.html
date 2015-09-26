@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2> by <a href="{% url 'profileView' {{ project.owner }} %}">{{ project.owner }}</a></h2>
+    <h2> by <a href="{% url 'profileView' project.owner %}">{{ project.owner }}</a></h2>
 
     <p>{{ project.description }}</p>
     <span>{{ project.last_update }}</span>
