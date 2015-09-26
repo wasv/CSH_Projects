@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PMS - Add a Project</title>
-</head>
-<body>
-    <h1>Add a Project</h1>
+{% extends "layout.html" %}
 
+{% block title %}
+    New Project | CSH PMS
+{% endblock %}
+
+{% block content %}
     <strong>Please create your project.</strong><br />
 
     <form id="project_form" method="post" action="{%  url 'newProject' %}"
@@ -18,6 +16,4 @@
 
         <input type="submit" name="submit" value="Register" />
     </form>
-
-</body>
-</html>
+{% endblock %}

@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PMS Registration</title>
-</head>
-<body>
-    <h1>PMS Registration</h1>
+{% extends "layout.html" %}
 
+{% block title %}
+    Registration | CSH PMS
+{% endblock %}
+
+{% block content %}
     {% if registered %}
     <strong>Thank you for registering.</strong>
     <a href="{% url 'index' %}">Return to the homepage.</a><br />
@@ -24,6 +22,4 @@
         <input type="submit" name="submit" value="Register" />
     </form>
     {% endif %}
-
-</body>
-</html>
+{% endblock %}

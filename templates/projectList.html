@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% if title %}
-    <title>{{ title }} | CSH PMS</title>
-    {% else %}
-    <title>CSH PMS</title>
-    {% endif %}
-</head>
-<body>
-{% if title %}
-    <h1>{{ title }}</h1>
-    {% else %}
-    <h1>CSH PMS</h1>
-    {% endif %}
+{% extends "layout.html" %}
 
+{% block title %}
+    {% if page_title %}
+        {{ page_title }} | CSH PMS
+    {% endif %}
+{% endblock %}
+
+{% block content %}
     {% for project in project_list %}
         <div class="project">
             <h2><a title="{{ project.title }}" href="/project/{{ project.id }}/">{{ project.title }}</a> by {{ project.owner }}</h2>
@@ -22,5 +14,4 @@
             <span>{{ project.last_update }}</span>
         </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
