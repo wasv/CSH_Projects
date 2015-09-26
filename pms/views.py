@@ -88,9 +88,9 @@ def projectEdit(request, project_id):
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
-def projectDetail(request, project_id):
+def projectView(request, project_id):
   project = get_object_or_404(Project, pk=project_id)
-  return render(request,'projectDetail.html',{'project':project})
+  return render(request,'projectView.html',{'project':project})
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
