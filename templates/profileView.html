@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ project.title }} | CSH PMS
+{% endblock %}
+
+
+{% block header %}
+    {{ user.first_name }} {{ user.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h2> ({{ user.username }}) </h2>
+
+    <p>{{ user.profile.bio }}</p>
+    <span>{{ user.profile.website }}</span>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import *
 
@@ -49,7 +49,7 @@ def profileCreate(request):
 def profileView(request,uname):
     user = get_object_or_404(User,username=uname)
     project_list = Project.objects.filter(owner=user.profile)
-    return render(request)
+    return render(request, 'profileView.html', {'user':user,'project_list':project_list})
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
@@ -59,7 +59,7 @@ def projectCreate(request):
         project = project_form.save(commit=False)
         project.owner = request.user.profile
         project.save()
-
+        return redirect('projectView',project_id=project.id)
     else:
         project_form = ProjectForm()
     return render(request,'projectCreate.html',{'project_form':project_form})
