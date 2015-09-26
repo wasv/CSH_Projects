@@ -1,9 +1,9 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import *
 
 
-# Checks if user has a profiles
+# Checks if user has a profile
 def profile_check(user):
     return user.is_authenticated() and hasattr(user, 'profile')
 
@@ -43,6 +43,13 @@ def profileCreate(request):
         else:
             profile_form = ProfileForm()
     return render(request,'profileCreate.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
+
+
+@user_passes_test(profile_check, login_url='profileCreate')
+def profileView(request,uname):
+    user = get_object_or_404(User,username=uname)
+    project_list = Project.objects.filter(owner=user.profile)
+    return HttpResponse(project_list)
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
