@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    New Project | CSH PMS
+    Project Info | CSH PMS
 {% endblock %}
 
 {% block header %}
-    New Project
+    Project Info
 {% endblock %}
 
 {% block content %}
 
-    <form id="project_form" method="post" action="{%  url 'projectCreate' %}"
+    <form id="project_form" method="post" action="{%  url 'projectEdit' %}"
             enctype="multipart/form-data">
 
         {% csrf_token %}

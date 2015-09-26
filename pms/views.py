@@ -70,11 +70,11 @@ def projectEdit(request, project_id):
     if request.user.profile == project.owner:
         if request.method == 'POST':
             project_form = ProjectForm(data=request.POST, instance=project)
-            project = project_form.save()
+            project_form.save()
             return redirect('projectView',project_id=project.id)
         else:
             project_form = ProjectForm(instance=project)
-            return render(request,'projectCreate.html',{'project_form':project_form})
+            return render(request,'projectEdit.html',{'project_form':project_form})
     else:
         return HttpResponse("Only owners of projects can edit them.")
 
