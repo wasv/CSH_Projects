@@ -56,25 +56,33 @@ def profileView(request,uname):
 def projectCreate(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST)
-        project = project_form.save(commit=False)
-        project.owner = request.user.profile
-        project.save()
+        if project_form.is_valid():
+            project = project_form.save(commit=False)
+            project.owner = request.user.profile
+            project.save()
+        else:
+            print(project_form.errors)
         return redirect('projectView',project_id=project.id)
+
     else:
         project_form = ProjectForm()
     return render(request,'projectCreate.html',{'project_form':project_form})
 
 
+@user_passes_test(profile_check, login_url='profileCreate')
 def projectEdit(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user.profile == project.owner:
         if request.method == 'POST':
             project_form = ProjectForm(data=request.POST, instance=project)
-            project_form.save()
+            if project_form.is_valid():
+                project_form.save()
+            else:
+                print(project_form.errors)
             return redirect('projectView',project_id=project.id)
         else:
             project_form = ProjectForm(instance=project)
-            return render(request,'projectEdit.html',{'project_form':project_form})
+            return render(request,'projectEdit.html',{'project_form':project_form,'project':project})
     else:
         return HttpResponse("Only owners of projects can edit them.")
 
