@@ -18,8 +18,9 @@
     {% endif %}
 
     <h2> Projects </h2>
+    <div class="project-list">
     {% for project in project_list %}
-        <div class="thumbnail">
+        <div class="thumbnail project">
             <img src="http://placehold.it/600x200"/>
             <div class="caption">
                 <h3><a title="{{ project.title }}" href="{% url "projectView" project.id %}">{{ project.title }}</a></h3>
@@ -33,4 +34,6 @@
             </div>
         </div>
     {% endfor %}
+        <div class="clearfix"></div>
+    </div>
 {% endblock %}
