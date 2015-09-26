@@ -13,5 +13,16 @@
     <h2> ({{ user.username }}) </h2>
 
     <p>{{ user.profile.bio }}</p>
-    <span>{{ user.profile.website }}</span>
+    {% if user.profile.website  %}
+        <a href="{{ user.profile.website }}">{{ user.profile.website }}</a>
+    {% endif %}
+
+    <h3> Projects </h3>
+    {% for project in project_list %}
+        <div class="project">
+            <h2><a title="{{ project.title }}" href="{% url "projectDetail" project.id %}">{{ project.title }}</a></h2>
+            <p>{{ project.description }}</p>
+            <span>{{ project.last_update }}</span>
+        </div>
+    {% endfor %}
 {% endblock %}
