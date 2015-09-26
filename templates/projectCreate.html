@@ -1,15 +1,14 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    New Project | CSH PMS
+    Project Info | CSH PMS
 {% endblock %}
 
 {% block header %}
-    New Project
+    Project Info
 {% endblock %}
 
 {% block content %}
-    <strong>Please create your project.</strong><br />
 
     <form id="project_form" method="post" action="{%  url 'projectCreate' %}"
             enctype="multipart/form-data">
