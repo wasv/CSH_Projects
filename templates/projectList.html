@@ -21,10 +21,10 @@
         <div class="thumbnail">
             <img src="http://placehold.it/600x200"/>
             <div class="caption">
-                <h3><a title="{{ project.title }}" href="{% url "projectDetail" project.id %}">{{ project.title }}</a></h3>
+                <h3><a title="{{ project.title }}" href="{% url "projectView" project.id %}">{{ project.title }}</a></h3>
                 <p>{{ project.description }}</p>
                 <p>
-                    <a class="btn btn-primary" role="button" title="{{ project.title }}" href="{% url "projectDetail" project.id %}">View Project</a>
+                    <a class="btn btn-primary" role="button" title="{{ project.title }}" href="{% url "projectView" project.id %}">View Project</a>
                     <a class="btn btn-link" role="button" title="{{ project.owner }}" href="{% url 'profileView' project.owner %}"> More by {{ project.owner }}</a>
                 </p>
                 <div class="pull-right">Updated: {{ project.last_update }}</div>
