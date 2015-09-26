@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         {% block title %}CSH PMS{%  endblock %}
     </title>
@@ -10,13 +11,15 @@
     <link rel="stylesheet" href="{% static 'members.min.css' %}" />
 </head>
 <body>
-    <h1>{% block header %}CSH PMS{%  endblock %}</h1>
-    {% block content %}
-    {% endblock %}
-    <hr/>
-    <p>
-        Development: William Stevens (wasv at csh.rit.edu) <br/>
-        Made for: <a href="http://csh.rit.edu/">RIT Computer Science House</a>
-    </p>
+    <div class="conatiner">
+        <h1>{% block header %}CSH PMS{%  endblock %}</h1>
+        {% block content %}
+        {% endblock %}
+        <hr/>
+        <p>
+            Development: William Stevens (wasv at csh.rit.edu) <br/>
+            Made for: <a href="http://csh.rit.edu/">RIT Computer Science House</a>
+        </p>
+    </div>
 </body>
 </html>
