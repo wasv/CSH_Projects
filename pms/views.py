@@ -10,7 +10,7 @@ def profile_check(user):
 
 def loginTest(request):
     if request.user.is_authenticated():
-        return HttpResponse("You are logged in as:",str(request.user.username))
+        return HttpResponse("You are logged in as: "+str(request.user.username))
     else:
         return HttpResponse("Not logged in")
 
