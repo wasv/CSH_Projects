@@ -49,7 +49,7 @@ def profileCreate(request):
 def profileView(request,uname):
     user = get_object_or_404(User,username=uname)
     project_list = Project.objects.filter(owner=user.profile)
-    return HttpResponse(project_list)
+    return render(request)
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
