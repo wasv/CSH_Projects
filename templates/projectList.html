@@ -3,6 +3,16 @@
 {% block title %}
     {% if page_title %}
         {{ page_title }} | CSH PMS
+    {% else %}
+        CSH PMS
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {% if page_title %}
+        {{ page_title }}
+    {% else %}
+        CSH PMS
     {% endif %}
 {% endblock %}
 
