@@ -27,6 +27,7 @@
                     <a class="btn btn-link" role="button" title="{{ project.owner }}" href="{% url 'profileView' project.owner %}"> More by {{ project.owner }}</a>
                 </p>
                 <div class="pull-right">Updated: {{ project.last_update }}</div>
+                <div class="clearfix"></div>
             </div>
         </div>
     {% endfor %}
