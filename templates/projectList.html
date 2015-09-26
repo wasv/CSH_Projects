@@ -19,8 +19,8 @@
 {% block content %}
     {% for project in project_list %}
         <div class="thumbnail">
+            <img src="http://placehold.it/900x300"/>
             <div class="caption">
-                <img src="http://placehold.it/900x150/fff/000.png?text=Picture+of+{{ project.title }}"/>
                 <h3><a title="{{ project.title }}" href="{% url "projectDetail" project.id %}">{{ project.title }}</a></h3>
                 <p>{{ project.description }}</p>
                 <p>
