@@ -11,7 +11,7 @@
 {% block content %}
     <strong>Please create your project.</strong><br />
 
-    <form id="project_form" method="post" action="{%  url 'newProject' %}"
+    <form id="project_form" method="post" action="{%  url 'projectCreate' %}"
             enctype="multipart/form-data">
 
         {% csrf_token %}

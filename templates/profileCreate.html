@@ -15,7 +15,7 @@
     {% else %}
     <strong>Please create your profile.</strong><br />
 
-    <form id="user_form" method="post" action="{%  url 'setupProfile' %}"
+    <form id="user_form" method="post" action="{%  url 'profileCreate' %}"
             enctype="multipart/form-data">
 
         {% csrf_token %}
