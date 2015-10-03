@@ -21,9 +21,9 @@ def profileCreate(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST, instance=request.user)
         if hasattr(request.user, 'profile'):
-            profile_form = ProfileForm(data=request.POST, instance=request.user.profile)
+            profile_form = ProfileForm(data=request.POST, instance=request.user.profile, files=request.FILES)
         else:
-            profile_form = ProfileForm(data=request.POST)
+            profile_form = ProfileForm(data=request.POST, files=request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
