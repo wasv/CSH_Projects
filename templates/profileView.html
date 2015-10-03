@@ -11,7 +11,9 @@
 
 {% block content %}
     <h2> ({{ user.username }}) </h2>
-    <img src="{{ user.profile.picture.url }}"/>
+    {% if user.profile.picture %}
+        <img src="{{ user.profile.picture.url }}"/>
+    {% endif %}
     <p>{{ user.profile.bio }}</p>
     {% if user.profile.website  %}
         <a href="{{ user.profile.website }}">{{ user.profile.website }}</a>
