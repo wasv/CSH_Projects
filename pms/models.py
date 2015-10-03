@@ -15,7 +15,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     bio = models.TextField()
     website = models.URLField(blank=True)
-    picture = models.ImageField(upload_to=get_profile_url)
+    picture = models.ImageField(upload_to=get_profile_url, blank=True)
 
     def __str__(self):
         if hasattr(self.user, 'name'):
