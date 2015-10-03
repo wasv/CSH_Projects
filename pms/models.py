@@ -1,13 +1,21 @@
-import datetime
+import datetime, os
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+
+
+def get_profile_url(instance, filename):
+    (_,ext) = os.path.splitext(filename)
+    uid = instance.user.id
+    print('profile-pics/'+ uid + ext)
+    return 'profile-pics/'+ uid + ext
 
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     bio = models.TextField()
     website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to=get_profile_url)
 
     def __str__(self):
         if hasattr(self.user, 'name'):
