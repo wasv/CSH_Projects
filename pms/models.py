@@ -6,7 +6,7 @@ from django.conf import settings
 
 def get_profile_url(instance, filename):
     (_,ext) = os.path.splitext(filename)
-    uid = instance.user.id
+    uid = str(instance.user.id)
     print('profile-pics/'+ uid + ext)
     return 'profile-pics/'+ uid + ext
 
