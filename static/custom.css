@@ -1,4 +1,29 @@
+body {
+    padding-top: 76px;
+    padding-bottom: 20px;
+}
 .project {
-    max-width:400px;
-    float:left;
+   height: 400px;
+}
+.navbar-brand .logo {
+	width: 24px;
+	height: 23px;
+	position: relative;
+	top: -2px;
+	display: inline;
+}
+.thumbnail-img {
+    height: 200px;
+    text-align: center;
+}
+
+.thumbnail-img img {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.description {
+    height: 3em;
 }

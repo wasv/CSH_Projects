@@ -7,20 +7,44 @@
     <title>
         {% block title %}CSH PMS{%  endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'members.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/members.min.css' %}" />
     <link rel="stylesheet" href="{% static 'custom.css' %}" />
 </head>
 <body>
-    <div class="conatiner">
-        <h1>{% block header %}CSH PMS{%  endblock %}</h1>
+    <navbar>
+        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/"><img src="{% static 'csh_logo_white.svg' %}" alt="CSH" class="logo"/><span>CSH PMS</span></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                  <p class="navbar-text">{% block header %}{%  endblock %}</p>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'index' %}">Project List</a></li>
+                    <li><a href="{% url 'profileCreate' %}">Edit Profile</a></li>
+                    <li><a href="{% url 'projectCreate' %}">New Project</a></li>
+                  </ul>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </div>
+    </navbar>
+    <div class="container">
         {% block content %}
         {% endblock %}
-        <hr/>
-        <p>
-            Development: William Stevens (wasv at csh.rit.edu) <br/>
-            Made for: <a href="http://csh.rit.edu/">RIT Computer Science House</a>
-        </p>
+    <hr/>
+    <p>
+        Development: William Stevens (wasv at csh.rit.edu) <br/>
+        Made for: <a href="http://csh.rit.edu/">RIT Computer Science House</a>
+    </p>
     </div>
+    <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 </html>

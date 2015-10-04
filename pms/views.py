@@ -36,6 +36,7 @@ def profileCreate(request):
             registered = True
         else:
             print(user_form.errors, profile_form.errors)
+        return redirect('profileView',uname=user.username)
     else:
         user_form = UserForm(instance=request.user)
         if hasattr(request.user, 'profile'):

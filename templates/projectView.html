@@ -10,12 +10,25 @@
 {% endblock %}
 
 {% block content %}
+    <div class="row">
     {% if project.picture %}
-        <img src="{{ project.picture.url }}"/>
+    <img class="col-md-4" src="{{ project.picture.url }}"/>
     {% endif %}
-    <h2> by <a href="{% url 'profileView' project.owner %}">{{ project.owner }}</a></h2>
+
+    <div class="col-md-6">
+        <p>{{ project.description }}</p>
+        {% if project.website  %}
+        <p>Official Site: <a href="{{ project.website }}">{{ project.website }}</a></p>
+        {% endif %}
+        {% if project.website  %}
+        <p>Documentation Site: <a href="{{ project.documentation }}">{{ project.documentation }}</a></p>
+        {% endif %}
+        <p>
+            by <a href="{% url 'profileView' project.owner %}">{{ project.owner }}</a>
+            {{ project.last_update }}
+        </p>
+        </div>
+    </div>
 
 
-    <p>{{ project.description }}</p>
-    <span>{{ project.last_update }}</span>
 {% endblock %}
