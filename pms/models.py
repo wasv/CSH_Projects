@@ -11,14 +11,12 @@ def autoresize_image(image_path,out_path=None):
     baseimg = Image.open(image_path)
     newsize = baseimg.size
     print(newsize)
-    if baseimg.size[0] > settings.MAX_IMAGE_SIZE:
-        xratio = (settings.MAX_IMAGE_SIZE/baseimg.size[0])
-        newsize = (int(settings.MAX_IMAGE_SIZE),int(baseimg.size[1]*xratio))
+    if baseimg.size[0] > settings.MAX_IMAGE_XSIZE:
+        xratio = (settings.MAX_IMAGE_XSIZE/baseimg.size[0])
+        newsize = (int(settings.MAX_IMAGE_XSIZE),int(baseimg.size[1]*xratio))
         baseimg = baseimg.resize(newsize,Image.ANTIALIAS)
-    if baseimg.size[1] > settings.MAX_IMAGE_SIZE:
-        yratio = (settings.MAX_IMAGE_SIZE/baseimg.size[1])
-        newsize = (int(baseimg.size[0]*yratio),int(settings.MAX_IMAGE_SIZE))
-        baseimg = baseimg.resize(newsize,Image.ANTIALIAS)
+    if baseimg.size[1] > settings.MAX_IMAGE_YSIZE:
+        baseimg = baseimg.crop((0,0,newsize[0],int(settings.MAX_IMAGE_YSIZE)))
     baseimg.save(out_path)
 
 

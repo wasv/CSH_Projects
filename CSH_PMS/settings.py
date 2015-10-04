@@ -119,4 +119,5 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 MEDIA_URL = '/media/'
-MAX_IMAGE_SIZE = 300.0
+MAX_IMAGE_XSIZE = 300.0
+MAX_IMAGE_YSIZE = 200.0
