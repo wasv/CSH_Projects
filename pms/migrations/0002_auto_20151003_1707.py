@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profile',
             name='picture',
-            field=models.ImageField(blank=True, upload_to=pms.models.get_profile_url),
+            field=models.ImageField(blank=True, upload_to=pms.models.get_profile_path),
         ),
         migrations.AlterField(
             model_name='profile',

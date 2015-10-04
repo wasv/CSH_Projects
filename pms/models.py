@@ -22,8 +22,14 @@ def autoresize_image(image_path,out_path=None):
     baseimg.save(out_path)
 
 
+def get_project_path(instance, filename):
+    (_,ext) = os.path.splitext(filename)
+    uid = str(instance.id)
+    print('project-pics/'+ uid + ext)
+    return 'project-pics/'+ uid + ext
 
-def get_profile_url(instance, filename):
+
+def get_profile_path(instance, filename):
     (_,ext) = os.path.splitext(filename)
     uid = str(instance.user.id)
     print('profile-pics/'+ uid + ext)
@@ -34,7 +40,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     bio = models.TextField()
     website = models.URLField(blank=True)
-    picture = models.ImageField(upload_to=get_profile_url, blank=True)
+    picture = models.ImageField(upload_to=get_profile_path, blank=True)
 
     def __str__(self):
         if hasattr(self.user, 'name'):
@@ -59,6 +65,7 @@ class Project(models.Model):
     description = models.TextField()
     last_update = models.DateField(default=timezone.now)
     state = models.CharField(max_length=1, choices=STATE_CHOICES)
+    picture = models.ImageField(upload_to=get_project_path, blank=True)
 
     owner = models.ForeignKey(Profile, related_name="%(app_label)s_%(class)s_owner", blank=True)
     contributors = models.ManyToManyField(Profile, related_name="%(app_label)s_%(class)s_contributors", blank=True)
@@ -71,3 +78,8 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title + " (by " + self.owner.user.username + ")"
+
+    def save(self, *args, **kwargs):
+        super(Project, self).save(*args,**kwargs)
+        if self.picture:
+            autoresize_image(self.picture.path)

@@ -55,7 +55,7 @@ def profileView(request,uname):
 @user_passes_test(profile_check, login_url='profileCreate')
 def projectCreate(request):
     if request.method == 'POST':
-        project_form = ProjectForm(data=request.POST)
+        project_form = ProjectForm(data=request.POST, files=request.FILES)
         if project_form.is_valid():
             project = project_form.save(commit=False)
             project.owner = request.user.profile
@@ -74,7 +74,7 @@ def projectEdit(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user.profile == project.owner:
         if request.method == 'POST':
-            project_form = ProjectForm(data=request.POST, instance=project)
+            project_form = ProjectForm(data=request.POST, instance=project, files=request.FILES)
             if project_form.is_valid():
                 project_form.save()
             else:

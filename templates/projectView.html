@@ -10,7 +10,9 @@
 {% endblock %}
 
 {% block content %}
-    <img src="http://placehold.it/600x200"/>
+    {% if project.picture %}
+        <img src="{{ project.picture.url }}"/>
+    {% endif %}
     <h2> by <a href="{% url 'profileView' project.owner %}">{{ project.owner }}</a></h2>
 
 

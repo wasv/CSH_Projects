@@ -18,4 +18,4 @@ class UserForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['title','description','state','website','documentation']
+        fields = ['title','description','state','website','documentation','picture']
