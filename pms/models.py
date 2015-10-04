@@ -2,6 +2,25 @@ import datetime, os
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+from PIL import Image
+
+
+def autoresize_image(image_path,out_path=None):
+    if not out_path:
+        out_path = image_path
+    baseimg = Image.open(image_path)
+    newsize = baseimg.size
+    print(newsize)
+    if baseimg.size[0] > settings.MAX_IMAGE_SIZE:
+        xratio = (settings.MAX_IMAGE_SIZE/baseimg.size[0])
+        newsize = (int(settings.MAX_IMAGE_SIZE),int(baseimg.size[1]*xratio))
+        baseimg = baseimg.resize(newsize,Image.ANTIALIAS)
+    if baseimg.size[1] > settings.MAX_IMAGE_SIZE:
+        yratio = (settings.MAX_IMAGE_SIZE/baseimg.size[1])
+        newsize = (int(baseimg.size[0]*yratio),int(settings.MAX_IMAGE_SIZE))
+        baseimg = baseimg.resize(newsize,Image.ANTIALIAS)
+    baseimg.save(out_path)
+
 
 
 def get_profile_url(instance, filename):
@@ -22,6 +41,11 @@ class Profile(models.Model):
             return self.user.first_name + self.user.last_name + " (" + self.user.username + ")"
         else:
             return self.user.username
+
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args,**kwargs)
+        if self.picture:
+            autoresize_image(self.picture.path)
 
 
 class Project(models.Model):

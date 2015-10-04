@@ -1,6 +1,5 @@
 Django >= 1.8.3, < 1.9
 django-admin-tools >= 0.5.2, < 0.6
-pillow >= 3.0.0
 
 # Debugging
 django-debugtools >= 1.4

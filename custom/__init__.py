@@ -7,6 +7,6 @@ __author__ = 'William'
 class CustomHeaderMiddleware(RemoteUserMiddleware):
     header = 'HTTP_WEBAUTH_USER'
     def process_request(self, request):
-        if settings.DEBUG:
+        if settings.DEBUG and os.getenv('REMOTE_USER'):
             request.META[self.header] = os.getenv('REMOTE_USER')
         return RemoteUserMiddleware.process_request(self, request)
