@@ -96,5 +96,29 @@ def projectView(request, project_id):
 
 @user_passes_test(profile_check, login_url='profileCreate')
 def index(request):
-    project_list = Project.objects.order_by('-last_update')[:10];
+    project_list = Project.objects.filter(state__in=['C','O']).order_by('-last_update')[:10]
     return render(request,'projectList.html',{'project_list':project_list})
+
+
+@user_passes_test(profile_check, login_url='profileCreate')
+def listAll(request):
+    project_list = Project.objects.order_by('-last_update')[:10]
+    return render(request,'projectList.html',{'project_list':project_list})
+
+
+@user_passes_test(profile_check, login_url='profileCreate')
+def listActive(request):
+    project_list = Project.objects.filter(state__in=['O','D']).order_by('-last_update')
+    return render(request,'projectList.html',{'project_list':project_list,'title':'Active Projects'})
+
+
+@user_passes_test(profile_check, login_url='profileCreate')
+def listDone(request):
+    project_list = Project.objects.filter(state='D').order_by('-last_update')
+    return render(request,'projectList.html',{'project_list':project_list,'title':'Completed Projects'})
+
+
+@user_passes_test(profile_check, login_url='profileCreate')
+def listDead(request):
+    project_list = Project.objects.filter(state='A').order_by('last_update')
+    return render(request,'projectList.html',{'project_list':project_list,'title':'Abandoned Projects'})
