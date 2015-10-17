@@ -19,6 +19,5 @@ from django.contrib import admin
 import pms
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^',include('pms.urls')),
 ]
