@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import *
 
@@ -10,9 +10,9 @@ def profile_check(user):
 
 def loginTest(request):
     if request.user.is_authenticated():
-        return HttpResponse("You are logged in as: "+str(request.user.username))
+        return render(request,'errorView.html',{'error_msg':"You are logged in as: "+str(request.user.username)})
     else:
-        return HttpResponse("Not logged in")
+        return render(request,'errorView.html',{'error_msg':"Not Logged In"})
 
 
 @login_required(login_url='loginTest')
@@ -85,7 +85,7 @@ def projectEdit(request, project_id):
             project_form = ProjectForm(instance=project)
             return render(request,'projectEdit.html',{'project_form':project_form,'project':project})
     else:
-        return HttpResponse("Only owners of projects can edit them.")
+        return render(request,'errorView.html',{'error_msg':"Only the project owner can edit a project."})
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
