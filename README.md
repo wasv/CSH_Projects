@@ -1,51 +1,21 @@
 # CSH Project Management System
 
-A system for CSH to manage, track, and document house projects. In addition, the system will serve as a way to recruit members onto projects based on skillset and interests.
+A system for CSH to manage, track, and document house projects.
 
-## My Ideas
-* Links to external websites related to project (GitHub, Wiki, etc).
+## Get Started
+1. Go to [pms.csh.rit.edu](https://pms.csh.rit.edu/) and sign in to your CSH account.
+2. Create a profile with a bio, picture, and links to your websites.
+3. Add a new project with links, pictures, and descirption.
+4. View other projects made by CSHers.
+
+## A note on pictures
+All pictures are resized to 300 px wide, then cropped to 100 px tall. For best results, upload a 300x100 px image.
+
+*If you have a suggestion on a better way to handle this, submit a pull request*
+
+## Future Improvements
+* More links to external websites related to project (GitHub, Wiki, etc).
 * Integrated build-log and/or documentation system.
-* Profile of skills and projects.
+* Include skills on profiles.
 * Search for members with specific skills, or projects that need a certain skill.
-* Lists or tags such as 'eboard picks' or 'freshmen projects'
-
-## Navigation Breakdown
-* Index - List of all active projects and concepts.
-* Limbo - List of inactive projects.
-* Project Details - Comments, links to external sites, and list of owner and collaborator profile.
-* Profile - List of users projects, bio, resume, and links
-
-## Model Breakdown
-* Projects
-  * Title (v1)
-  * Description (v1)
-  * Last Update (v1)
-  * Owner (v1)
-  * Collaborators (v2)
-  * Picture (v1.5)
-  * Links (v1.5)
-  * State (Concept/Active/Inactive/Done) (v2)
-    * Project is a 'Concept' until there is a physical object or compilable code.
-    * Project is 'Active' if owner/collaborator 'Checks in' every 2 months.
-    * Considered 'inactive' if no check in after 1 year or explicitly abandoned.
-      * Allow new owner to 'revive' project? (or maybe 'fork' it instead?)
-    * Project can be marked as 'Done' when there is no need for further updates.
-  * Suggestions/Comments (v2)
-  * Build Updates (v2)
-* Profiles
-  * Name (v1)
-  * Bio (v1)
-  * List of projects (v1)
-  * Picture (v1.5)
-  * Links to social networks (v1.5)
-  * Resume (v2)
-* Skills (v3?)
-
-## UPDATE: 15-09-15 Redesign Based on R&D Suggestions
-* Less PMS, more Project Board.
-* List of projects/ideas, with suggestions and comments.
-* Include build log feature?
-
-* Profiles from webauth for comments.
-* Link to LinkedIn? See Y$
-* Allow uploading resume to profile.
+* Custom lists or tags such as 'eboard picks' or 'freshmen projects'.
