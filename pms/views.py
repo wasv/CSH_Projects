@@ -61,9 +61,9 @@ def projectCreate(request):
             project = project_form.save(commit=False)
             project.owner = request.user.profile
             project.save()
+            return redirect('projectView',project_id=project.id)
         else:
             print(project_form.errors)
-        return redirect('projectView',project_id=project.id)
 
     else:
         project_form = ProjectForm()
