@@ -34,9 +34,9 @@ def profileCreate(request):
 
             profile.save()
             registered = True
+            return redirect('profileView',uname=user.username)
         else:
             print(user_form.errors, profile_form.errors)
-        return redirect('profileView',uname=user.username)
     else:
         user_form = UserForm(instance=request.user)
         if hasattr(request.user, 'profile'):
@@ -90,8 +90,8 @@ def projectEdit(request, project_id):
 
 @user_passes_test(profile_check, login_url='profileCreate')
 def projectView(request, project_id):
-  project = get_object_or_404(Project, pk=project_id)
-  return render(request,'projectView.html',{'project':project})
+      project = get_object_or_404(Project, pk=project_id)
+      return render(request,'projectView.html',{'project':project})
 
 
 @user_passes_test(profile_check, login_url='profileCreate')
