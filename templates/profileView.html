@@ -6,7 +6,13 @@
 
 
 {% block header %}
-    {{ user.first_name }} {{ user.last_name }} ({{ user.username }})
+    {% if user.first_name and user.last_name %}
+        {{ user.first_name }} {{ user.last_name }} ({{ user.username }})
+    {% elif user.first_name %}
+        {{ user.first_name }} ({{ user.username }})
+    {% else %}
+        {{ user.username }}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -16,7 +22,9 @@
         {% endif %}
 
         <div class="col-md-4">
+        {% if user.profile.bio %}
         <p>{{ user.profile.bio }}</p>
+        {% endif %}
         {% if user.profile.website  %}
             <a href="{{ user.profile.website }}">{{ user.profile.website }}</a>
         {% endif %}

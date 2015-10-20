@@ -46,14 +46,14 @@ def profileCreate(request):
     return render(request,'profileCreate.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def profileView(request,uname):
     user = get_object_or_404(User,username=uname)
     project_list = Project.objects.filter(owner=user.profile)
     return render(request, 'profileView.html', {'user':user,'project_list':project_list})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@user_passes_test(profile_check,login_url='profileCreate')
 def projectCreate(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST, files=request.FILES)
@@ -70,7 +70,7 @@ def projectCreate(request):
     return render(request,'projectCreate.html',{'project_form':project_form})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def projectEdit(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user.profile == project.owner:
@@ -88,37 +88,37 @@ def projectEdit(request, project_id):
         return render(request,'errorView.html',{'error_msg':"Only the project owner can edit a project."})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def projectView(request, project_id):
       project = get_object_or_404(Project, pk=project_id)
       return render(request,'projectView.html',{'project':project})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def index(request):
     project_list = Project.objects.filter(state__in=['C','O']).order_by('-last_update')[:10]
     return render(request,'projectList.html',{'project_list':project_list})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def listAll(request):
     project_list = Project.objects.order_by('-last_update')[:10]
     return render(request,'projectList.html',{'project_list':project_list})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def listActive(request):
     project_list = Project.objects.filter(state__in=['O','D']).order_by('-last_update')
     return render(request,'projectList.html',{'project_list':project_list,'title':'Active Projects'})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def listDone(request):
     project_list = Project.objects.filter(state='D').order_by('-last_update')
     return render(request,'projectList.html',{'project_list':project_list,'title':'Completed Projects'})
 
 
-@user_passes_test(profile_check, login_url='profileCreate')
+@login_required(login_url='loginTest')
 def listDead(request):
     project_list = Project.objects.filter(state='A').order_by('last_update')
     return render(request,'projectList.html',{'project_list':project_list,'title':'Abandoned Projects'})
